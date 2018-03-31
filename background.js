@@ -1,3 +1,8 @@
+chrome.runtime.onInstalled.addListener(function() {
+	chrome.storage.local.set({'activate': 'False'}, function() {
+		console.log('Deactivated');
+	});
+});
 
 chrome.runtime.onInstalled.addListener(function(){
 	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
@@ -12,10 +17,15 @@ chrome.runtime.onInstalled.addListener(function(){
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, info) {
+		var storage = chrome.storage.local;
 		if(info.status == 'complete'){
-			 chrome.tabs.getSelected(null,function(tab) {
-				var tablink = tab.url;
-				alert(tablink);
-			 });
+			storage.get('activate',function(result){
+				if(result.activate == 'True'){
+					chrome.tabs.getSelected(null,function(tab) {
+						var tablink = tab.url;
+						alert(tablink);
+					});
+				}
+			});
 		}
-	});
+});
