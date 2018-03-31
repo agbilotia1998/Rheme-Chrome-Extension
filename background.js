@@ -1,3 +1,4 @@
+
 chrome.runtime.onInstalled.addListener(function(){
 	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
 		chrome.declarativeContent.onPageChanged.addRules([{
@@ -9,3 +10,12 @@ chrome.runtime.onInstalled.addListener(function(){
 		}]);
 	});
 });
+
+chrome.tabs.onUpdated.addListener(function(tabId, info) {
+		if(info.status == 'complete'){
+			 chrome.tabs.getSelected(null,function(tab) {
+				var tablink = tab.url;
+				alert(tablink);
+			 });
+		}
+	});
