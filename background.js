@@ -1,3 +1,4 @@
+
 chrome.runtime.onInstalled.addListener(function() {
 	chrome.storage.local.set({'activate': 'False'}, function() {
 		console.log('Deactivated');
@@ -23,7 +24,15 @@ chrome.tabs.onUpdated.addListener(function(tabId, info) {
 				if(result.activate == 'True'){
 					chrome.tabs.getSelected(null,function(tab) {
 						var tablink = tab.url;
-						alert(tablink);
+						//alert(tablink);
+						$.ajax({
+							method: "GET",
+							url: 'https://google.com/url='+tablink,
+							success:function(result){
+								console.log()
+							}
+						});
+						
 					});
 				}
 			});
