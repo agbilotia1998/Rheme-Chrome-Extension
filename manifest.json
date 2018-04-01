@@ -2,7 +2,7 @@
   "name": "Track website",
   "version": "1.0",
   "description": "Extension to track a website",
-  "permissions": ["webNavigation", "*://*/*","tabs","activeTab","declarativeContent","storage","https://*/*"],
+  "permissions": ["webNavigation", "*://*/*","tabs","activeTab","declarativeContent","storage","https://*/*","http://*/*"],
   "background": {
     "scripts": ["background.js","jquery.js"],
     "persistent": false

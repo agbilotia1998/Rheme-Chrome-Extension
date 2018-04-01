@@ -27,9 +27,12 @@ chrome.tabs.onUpdated.addListener(function(tabId, info) {
 						//alert(tablink);
 						$.ajax({
 							method: "GET",
-							url: 'https://google.com/url='+tablink,
+							url: 'https://7f6e3dec.ngrok.io/log',
+							headers:{'Access-Control-Allow-Origin': '*'},
+							data: { link:tablink,time : Math.random(), visitors: Math.floor(Math.random()*5) },
+							contentType: "application/json",
 							success:function(result){
-								console.log()
+								console.log(result);
 							}
 						});
 						
